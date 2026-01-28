@@ -52,8 +52,7 @@ const App = () => {
             setMessage(`Updated ${returnedPerson.name}'s number`, 'edit')
           })
           .catch(error => {
-            setMessage(`${newName}'s info has already been removed from server`, 'error')
-            console.log('meni erroriin asti')
+            setMessage(error.response.data.error, 'error')
           })
       }
     } else {
@@ -63,6 +62,10 @@ const App = () => {
           setPersons(persons.concat(returnedPerson))
           console.log(returnedPerson.name)
           setMessage(`Added ${returnedPerson.name}`, 'edit')
+        })
+        .catch(error => {
+          console.log(error.response.data)
+          setMessage(error.response.data.error, 'error')
         })
     }
     setNewName('')

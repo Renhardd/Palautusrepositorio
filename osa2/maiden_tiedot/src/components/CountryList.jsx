@@ -20,12 +20,21 @@ const CountryList = ({ countries }) => {
     )
 }
 
-const FewCountries = ({ countries}) => {
+const FewCountries = ({ countries }) => {
+    const [selectedCountry, setSelectedCountry] = useState(null)
+
+    if (selectedCountry) {
+        return <OneCountry country={selectedCountry} />
+    }
+
     return (
         <div>
           {countries.map(country =>
             <p key={country.name.common}>
                 {country.name.common}
+                <button onClick={() => setSelectedCountry(country)}>
+                show
+                </button>
             </p>
             )}
         </div>
